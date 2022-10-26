@@ -6,6 +6,9 @@ Final Implementation of WeatherData.  Complete all the TODOs
 ###################################
 # Base Classes #
 ###################################
+from ast import Sub
+
+
 class Subject:
     
     def __init__(self):
@@ -80,21 +83,11 @@ class WeatherData(Subject):
 class CurrentConditionsDisplay(Observer):
 
     def __init__(self, weatherData):
-        self.temerature = 0
-        self.humidity = 0
-        self.pressure = 0
+        super().__init__(weatherData)
 
-        self.weatherData = weatherData # save the ref in an attribute.
-        weatherData.registerObserver(self) # register the observer
-                                           # so it gets data updates.
-    def update(self, temperature, humidity, pressure):
-        self.temerature = temperature
-        self.humidity = humidity
-        self.pressure = pressure
-        self.display()
 
     def display(self):
-        print("Current conditions:", self.temerature,
+        print("Current conditions:", self.temp,
               "F degrees and", self.humidity,"[%] humidity",
               "and pressure", self.pressure)
 
