@@ -3,27 +3,52 @@ Final Implementation of WeatherData.  Complete all the TODOs
 """
 
 
+###################################
+# Base Classes #
+###################################
 class Subject:
+    
+    def __init__(self):
+        self.observers = []
+    
+    
     # Both of the following two methods take an
     # observer as an argument; that is, the observer
     # to be registered ore removed.
     def registerObserver(observer):
-        pass
+        self.observer.append(observer)
     def removeObserver(observer):
-        pass
+        self.observers.remove(observer)
 
     # This method is called to notify all observers
     # when the Subject's state (measuremetns) has changed.
     def notifyObservers():
-        pass
+        "Subject's state has been changed"
 
 # The observer class is implemented by all observers,
 # so they all have to implemented the update() method. Here
 # we're following Mary and Sue's lead and
 # passing the measurements to the observers.
 class Observer:
+    def __init__(self, data):
+        self.temp = 0
+        self.humidity = 0
+        self.pressure = 0
+        
+        self.data = data
+        data.registerObserver(self)
+        
     def update(self, temp, humidity, pressure):
-        pass
+        self.temp = temp
+        self.humidity = humidity
+        self.pressure = pressure
+        self.notifyObservers()
+        self.display()
+
+
+###################################
+# Children Classes #
+###################################
 
 # WeatherData now implements the subject interface.
 class WeatherData(Subject):
