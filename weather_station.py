@@ -45,7 +45,7 @@ class Observer:
         self.temp = temp
         self.humidity = humidity
         self.pressure = pressure
-        self.notifyObservers()
+        
         self.display()
 
 
@@ -133,7 +133,7 @@ class StatisticsDisplay(Observer):
         self.average_pressure = round(
             (self.max_pressure + self.min_pressure) / 2, 2)
         
-    def display_data(self):
+    def display(self):
         
         self.calculate_stats()
         
