@@ -18,9 +18,9 @@ class Subject:
     # Both of the following two methods take an
     # observer as an argument; that is, the observer
     # to be registered ore removed.
-    def registerObserver(observer):
-        self.observer.append(observer)
-    def removeObserver(observer):
+    def registerObserver(self, observer):
+        self.observers.append(observer)
+    def removeObserver(self, observer):
         self.observers.remove(observer)
 
     # This method is called to notify all observers
@@ -91,7 +91,7 @@ class CurrentConditionsDisplay(Observer):
               "F degrees and", self.humidity,"[%] humidity",
               "and pressure", self.pressure)
 
-# TODO: implement StatisticsDisplay class and ForecastDisplay class.
+# : implement StatisticsDisplay class and ForecastDisplay class.
 
 
 class StatisticsDisplay(Observer):
@@ -177,6 +177,7 @@ class WeatherStation:
         weather_data = WeatherData()
         current_display = CurrentConditionsDisplay(weather_data)
         stats = StatisticsDisplay(weather_data)
+        forecast = ForecastDisplay(weather_data)
 
 
         weather_data.setMeasurements(80, 65,30.4)
@@ -184,8 +185,8 @@ class WeatherStation:
         weather_data.setMeasurements(78, 90,29.2)
 
         # un-register the observer
-        weather_data.removeObserver(current_display)
-        weather_data.setMeasurements(120, 100,1000)
+        #weather_data.removeObserver(current_display)
+        #weather_data.setMeasurements(120, 100,1000)
 
 
 
