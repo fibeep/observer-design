@@ -149,6 +149,27 @@ class CurrentConditionsDisplay(Observer):
             print(self.min_pressure, " | ", self.average_pressure, ' | ', self.max_pressure)
 
 
+    class ForecastDisplay(Observer):
+        def __init__(self, weatherData):
+            super().__init__(weatherData)
+            self.forcast_temp = 0
+            self.forcast_humidity = 0
+            self.forcast_pressure = 0
+
+        def forcast(self):
+            self.forcast_temp = round(
+                self.temp + 0.11 * self.humidity + 0.22 * self.pressure, 2)
+            self.forcast_humidity = round(self.humidity - 0.9 * self.humidity, 2)
+            self.forcast_pressure = round(
+                self.pressure + 0.1 * self.temp - 0.21 * self.pressure, 2)
+
+        def display(self):
+
+            self.forcast()
+
+            print("Todays Forcast:")
+            print("Temperature | Humidity | Pressure")
+            print(self.forcast_temp, self.forcast_humidity, self.forcast_pressure)
 
 
 class WeatherStation:
