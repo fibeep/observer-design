@@ -54,21 +54,10 @@ class Observer:
 class WeatherData(Subject):
 
     def __init__(self):
-        self.observers = []
+        super().__init__()
         self.temperature = 0
         self.humidity = 0
         self.pressure = 0
-
-
-    def registerObserver(self, observer):
-        # When an observer registers, we just
-        # add it to the end of the list.
-        self.observers.append(observer)
-
-    def removeObserver(self, observer):
-        # When an observer wants to un-register,
-        # we just take it off the list.
-        self.observers.remove(observer)
 
     def notifyObservers(self):
         # We notify the observers when we get updated measurements
