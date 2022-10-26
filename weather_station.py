@@ -152,24 +152,24 @@ class CurrentConditionsDisplay(Observer):
     class ForecastDisplay(Observer):
         def __init__(self, weatherData):
             super().__init__(weatherData)
-            self.forcast_temp = 0
-            self.forcast_humidity = 0
-            self.forcast_pressure = 0
+            self.forecast_temp = 0
+            self.forecast_humidity = 0
+            self.forecast_pressure = 0
 
-        def forcast(self):
-            self.forcast_temp = round(
+        def forecast(self):
+            self.forecast_temp = round(
                 self.temp + 0.11 * self.humidity + 0.22 * self.pressure, 2)
-            self.forcast_humidity = round(self.humidity - 0.9 * self.humidity, 2)
-            self.forcast_pressure = round(
+            self.forecast_humidity = round(self.humidity - 0.9 * self.humidity, 2)
+            self.forecast_pressure = round(
                 self.pressure + 0.1 * self.temp - 0.21 * self.pressure, 2)
 
         def display(self):
 
-            self.forcast()
+            self.forecast()
 
-            print("Todays Forcast:")
+            print("Todays forecast:")
             print("Temperature | Humidity | Pressure")
-            print(self.forcast_temp, self.forcast_humidity, self.forcast_pressure)
+            print(self.forecast_temp, self.forecast_humidity, self.forecast_pressure)
 
 
 class WeatherStation:
@@ -184,11 +184,11 @@ class WeatherStation:
         # The StatisticsDisplay class should keep track of the min/average/max
         # measurements and display them.
 
-        # The ForecastDisplay class shows the weather forcast based on the current
+        # The ForecastDisplay class shows the weather forecast based on the current
         # temperature, humidity and pressure. Use the following formuals :
-        # forcast_temp = temperature + 0.11 * humidity + 0.2 * pressure
-        # forcast_humadity = humidity - 0.9 * humidity
-        # forcast_pressure = pressure + 0.1 * temperature - 0.21 * pressure
+        # forecast_temp = temperature + 0.11 * humidity + 0.2 * pressure
+        # forecast_humadity = humidity - 0.9 * humidity
+        # forecast_pressure = pressure + 0.1 * temperature - 0.21 * pressure
 
         weather_data.setMeasurements(80, 65,30.4)
         weather_data.setMeasurements(82, 70,29.2)
